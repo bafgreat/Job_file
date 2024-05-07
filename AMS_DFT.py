@@ -52,7 +52,7 @@ def Submit(qc_base):
     New_input.append('module add ams/2021.impi\n')
     New_input.append('./'+qc_base+'.run  >  '+ qc_base+'.out \n' )
     new_file = 'submita.sh'
-    put_contents(new_file,New_input)
+    put_contents(new_file, New_input)
     #os.system('mv '+ new_file+ '  '+ dir)
     return
 
