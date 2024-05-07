@@ -61,7 +61,7 @@ def Make_dir(qc_base):
         os.makedirs(qc_base)
     #shutil.move(qc_base+'*', qc_base)
     os.system('mv ' + qc_base +'.*   ' + qc_base)
-    os.system('mv'+ 'submita.sh' + qc_base)
+    os.system('mv  '+ ' submita.sh  ' + qc_base)
     return
 def InitialHessian(file_name):
     New_input =[]
