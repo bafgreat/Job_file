@@ -61,6 +61,7 @@ def Make_dir(qc_base):
         os.makedirs(qc_base)
     #shutil.move(qc_base+'*', qc_base)
     os.system('mv ' + qc_base +'.*   ' + qc_base)
+    os.system('mv'+ 'submita.sh' + qc_base)
     return
 def InitialHessian(file_name):
     New_input =[]
@@ -119,7 +120,7 @@ def Gas_OPt_Freq(name, Hessian):
      put_contents(new_file, New_input)
      os.system("chmod +x " + new_file)
      Submit(qc_base)
-     #Make_dir(qc_base)
+     Make_dir(qc_base)
      return new_file
 
 Gas_OPt_Freq(qcin, Hessian)
