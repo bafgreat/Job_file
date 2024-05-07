@@ -47,6 +47,9 @@ def Submit(qc_base):
     New_input.append('#SBATCH -J  '+ qc_base +'\n')
     New_input.append('source ~/.bash_profile\n')
     New_input.append('sleep 10\n')
+    New_input.append('module purge\n')
+    New_input.append('module use -a  /projects/m_chemie/privatemodules/\n')
+    New_input.append('module add ams/2021.impi\n')
     New_input.append('./'+qc_base+'.run  >  '+ qc_base+'.out \n' )
     new_file = 'submita.sh'
     put_contents(new_file,New_input)
