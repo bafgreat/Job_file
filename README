@@ -1,0 +1,11 @@
+A repository containing simple scripts to create input files for various
+computational chemistry packages. These scripts are starting point for
+a newbie in computational chemistry with liitle or no experience.
+
+# Installation
+Cloning the repository is very simple.
+```
+mkdir ~/src
+cd ~/src
+git clone https://github.com/bafgreat/Job_file.git
+```
