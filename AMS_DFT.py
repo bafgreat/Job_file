@@ -109,7 +109,7 @@ def Gas_OPt_Freq(name, Hessian):
      New_input.append('      DISPERSION GRIMME3 BJDAMP\n')
      New_input.append('   End\n')
      New_input.append('   BandStructure\n')
-     New_input.append('   Enabled Yes\n')
+     New_input.append('   Enabled No\n')
      New_input.append('   End\n')
 
      New_input.append('    EndEngine\n')
