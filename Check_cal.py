@@ -39,14 +39,14 @@ def get_section(contents, start_key, stop_key, start_offset=0, stop_offset=0):
     data = contents[start_index:stop_index]
     return  data
 
+
+
 def Energetic_parameter(output):
     parameters = get_contents(output)
     for  line in parameters:
-        if "Total Energy (hartree)" in line:
-            Total = float(line.split()[3])
-        elif "Total Mermin free energy:" in line:
-            Total = float(line.split()[4])
-    return Total
+        if "NORMAL TERMINATION"  in line:
+            return True
+    return False
 
 
 
@@ -66,7 +66,7 @@ def  Collect(folder):
     for folders in All_folders:
         base2= os.getcwd()
         os.chdir(folders)
-        
+
         #Akward checking mechanism
         try:
             energy = Energetic_parameter('All.out')
@@ -76,7 +76,7 @@ def  Collect(folder):
 
         os.chdir(base2)
     Write(List)
-    
+
     return
 
 
