@@ -93,6 +93,13 @@ def Gas_OPt_Freq(name, Hessian):
      New_input.append('    StressTensor Yes\n')
      New_input.append('    ElasticTensor Yes\n')
      New_input.append('  End\n')
+     New_input.append('GeometryOptimization\n')
+     New_input.append('    Convergence\n')
+     New_input.append('      Energy 1e-07\n')
+     New_input.append('      Gradients 0.0001\n')
+     New_input.append('    End\n')
+     New_input.append('End\n')
+     
      if Hessian != None:
          hess = InitialHessian(Hessian)
          New_input.extend (hess)
