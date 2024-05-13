@@ -83,7 +83,7 @@ def Gas_OPt_Freq(name, Hessian):
      New_input.append("#!/bin/sh\n")
      New_input.append('CM_AMSEXTERNAL=$NSCM\n')
      New_input.append('export NSCM_AMSEXTERNAL\n')
-     New_input.append(' NSCM=24\n')
+     New_input.append(' NSCM=64\n')
      New_input.append(' export NSCM\n')
      New_input.append('\n')
      New_input.append('$AMSBIN/ams << eor\n\n')
