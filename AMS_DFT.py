@@ -85,7 +85,7 @@ def Gas_OPt_Freq(name, Hessian):
      New_input.append('$AMSBIN/ams << eor\n\n')
      New_input.append(' Task GeometryOptimization \n')
      New_input.append(' Properties \n')
-     New_input.append('     NormalModes No \n')
+     New_input.append('     NormalModes yes \n')
      New_input.append('  End\n')
      if Hessian != None:
          hess = InitialHessian(Hessian)
