@@ -120,7 +120,7 @@ def Gas_OPt_Freq(name, Hessian):
      New_input.append('GeometryOptimization\n')
      New_input.append('    Convergence\n')
      New_input.append('      Energy 1e-06\n')
-     New_input.append('      Gradients 0.0001\n')
+     New_input.append('      Gradients 0.001\n')
      New_input.append('    End\n')
      New_input.append('End\n')
 
