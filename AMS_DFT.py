@@ -50,12 +50,35 @@ def Submit(qc_base):
     New_input.append('sleep 10\n')
     New_input.append('module purge\n')
     New_input.append('module use -a  /projects/m_chemie/privatemodules/\n')
-    New_input.append('module add ams/2021.impi\n')
+    New_input.append('module add ams.2024\n')
     New_input.append('./'+qc_base+'.run  >  '+ qc_base+'.out \n' )
     new_file = 'submita.sh'
     put_contents(new_file, New_input)
     #os.system('mv '+ new_file+ '  '+ dir)
     return
+
+
+def Submit_pc2(qc_base):
+    New_input =[]
+    New_input.append('#!/bin/bash\n')
+    New_input.append('#SBATCH --nodes=1\n')
+    New_input.append('#SBATCH --cpus-per-task=1\n')
+    New_input.append('#SBATCH  -t 20-12:10:00\n')
+    New_input.append('#SBATCH --ntasks=64\n')
+    New_input.append('#SBATCH --mem-per-cpu=3GB\n')
+    New_input.append('#SBATCH -p normal\n')
+    New_input.append(f'#SBATCH -o {qc_base}_slurm.out\n')
+    New_input.append(f'#SBATCH -e {qc_base}_slurm.err\n')
+    New_input.append('#SBATCH -J  '+ qc_base +'\n')
+    New_input.append('source ~/.bash_profile\n')
+    New_input.append('source $HOME/src/ams2024.102/adfbashrc.sh\n')
+    New_input.append('sleep 10\n')
+    New_input.append('./'+qc_base+'.run  >  '+ qc_base+'.out \n' )
+    new_file = 'submita.sh'
+    put_contents(new_file, New_input)
+    #os.system('mv '+ new_file+ '  '+ dir)
+    return
+
 
 def Make_dir(qc_base):
     if not os.path.exists(qc_base):
@@ -133,7 +156,7 @@ def Gas_OPt_Freq(name, Hessian):
      new_file = qc_base + ".run"
      put_contents(new_file, New_input)
      os.system("chmod +x " + new_file)
-     Submit(qc_base)
+     Submit_pc2(qc_base)
      Make_dir(qc_base)
      return new_file
 
