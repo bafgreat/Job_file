@@ -191,7 +191,7 @@ def Submit(qc_base):
 
 def  Unfinished(All_folders):
     base= os.getcwd()
-    for folders in All_folders:
+    for folders in glob.glob(All_folders):
         foldername= glob.glob(folders+'/*run')
         qc_base = foldername[0].split('/')[-1].split('.')[0]
         print (qc_base)
