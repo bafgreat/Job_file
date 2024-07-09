@@ -5,6 +5,7 @@ import subprocess
 import os
 import glob
 import csv
+import submit_files
 
 def get_contents(filename):
     with open(filename, 'r') as f:
@@ -48,7 +49,6 @@ def remove_digits_at_start(input_string):
     pattern = re.compile(r'\b\d+([a-zA-Z])')
     result = pattern.sub(r'\1', input_string)
     return result
-
 
 
 def ADFOUT(qcin):
@@ -120,7 +120,8 @@ def OPt(name):
     New_input.append('    End\n\n')
     New_input.append(' Engine BAND\n')
     New_input.append('   Basis\n')
-    New_input.append('      Type TZ2P\n')
+    New_input.append('      Type TZP\n')
+    New_input.append('   Core smalln')
     New_input.append('   End\n')
     New_input.append('   XC\n')
     New_input.append('      GGA PBE\n')
@@ -159,11 +160,10 @@ def Energetic_parameter(output):
 def Submit(qc_base):
     New_input =[]
     New_input.append('#!/bin/bash\n')
-    New_input.append('#SBATCH --partition=single\n')
     New_input.append('#SBATCH --nodes=1\n')
-    New_input.append('#SBATCH --cpus-per-task=16\n')
-    #New_input.append('#SBATCH --ntasks=8\n')
-    New_input.append('#SBATCH --time=00-72:00:00\n')
+    New_input.append('#SBATCH --cpus-per-task=1\n')
+    New_input.append('#SBATCH --ntasks=8\n')
+    New_input.append('#SBATCH  -t 4-48:10:00\n')
     New_input.append('#SBATCH --mem=64gb\n')
     New_input.append('#SBATCH -J  '+ qc_base+'\n')
     New_input.append('#SBATCH --error='+qc_base+'.log\n')
@@ -247,7 +247,7 @@ def  Unfinished(All_folders):
                 os.system('cp  '+ qc_base+'.out   '+ 'Store.out')
                 os.system('rm slurm*')
                 Check_coords(qc_base+'.out')
-                young(qc_base)
+                submit_files.create_submit(qc_base)
                 os.system('qsub submita.sh')
                 os.chdir(base)
 
@@ -255,7 +255,7 @@ def  Unfinished(All_folders):
             os.chdir(folders)
             if   os.path.exists('ams.results'):
                 os.system(' rm -r ams.results')
-            young(qc_base)
+            submit_files.create_submit(qc_base)
             os.system('qsub submita.sh')
             os.chdir(base)
     return
