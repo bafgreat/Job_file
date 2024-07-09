@@ -1,5 +1,6 @@
 
 import socket
+import re 
 
 def put_contents(filename, output):
     with open(filename, 'w') as f:
